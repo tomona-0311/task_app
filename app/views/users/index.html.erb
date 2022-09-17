@@ -1,5 +1,9 @@
  <h3>>スケジュール一覧</h3>
  
+ <% if flash[:notice] %>
+   <p class="notice"><%= flash[:notice] %></p>
+   <% end %>
+
  <table>
    <thead>
      <tr>
@@ -20,15 +24,20 @@
        <tr>
          <td><%= user.id %></td>
          <td><%= user.title%></td>
-         <td><%= user.start_date %></td>
+         <td><%= user.startdate %></td>
          <td><%= user.enddate%></td>
          <td><%= user.allday %></td>
-         <td><%= user.memo %></td>
-         <td><%= user.updated_at %></td>
-         <td><%= user.created_at %></td>
+         <td><%= user.updated_at.to_s(:datetime_jp)%></td>
+       
          <td>
          <%= link_to "確認", user %>
-       </td>
+         </td>
+         <td>
+         <%= link_to "編集", [:edit, user]%>
+         </td>
+         <td>
+        <%= link_to "削除", user, data: {turbo_method: :delete}, turbo_confirm: "本当に削除しますか？" %>
+         </td>
        </tr>
      <% end %>
    </tbody>
