@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-    validates :name, presence: true
-   validates :email, uniqueness: true, presence: true
-   validates :age, numericality: true
-   validates :introduction, length: { in: 10..30 }
+    validates :title, presence: true
+   validates :startdate, uniqueness: true, presence: true
+   validates :enddate, uniqueness: true, presence: true
+  
+   validates :memo, length: { in: 1..30 }
 end

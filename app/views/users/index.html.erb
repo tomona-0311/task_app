@@ -1,4 +1,6 @@
- <h3>>スケジュール一覧</h3>
+
+<h1> ruby on rails スケジュール管理アプリ</h1>
+ <h3>スケジュール一覧</h3>
  
  <% if flash[:notice] %>
    <p class="notice"><%= flash[:notice] %></p>
@@ -22,7 +24,8 @@
    <tbody>
      <% @users.each do |user| %>
        <tr>
-         <td><%= user.id %></td>
+         <td><%= user.id.sort_link(@q, :id, "id")%></td>
+       
          <td><%= user.title%></td>
          <td><%= user.startdate %></td>
          <td><%= user.enddate%></td>
@@ -42,7 +45,7 @@
          <%= link_to "編集", [:edit, user]%>
          </td>
          <td>
-        <%= link_to "削除", user, data: {turbo_method: :delete}, turbo_confirm: "本当に削除しますか？" %>
+           <%= link_to "削除", user,  data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
          </td>
        </tr>
      <% end %>
@@ -50,3 +53,9 @@
  </table>
  
  <p><%= link_to "スケジュール新規登録", :new_user %></p>
+
+<footer>
+<h2>現在の日時 : <%= Date.current.strftime("%Y年 %m月 %d日") %>
+　スケジュール合計 :　<%= (@cart.total_price).to_i %>
+</h2>
+</footer>
