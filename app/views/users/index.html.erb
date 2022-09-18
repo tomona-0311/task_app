@@ -26,7 +26,13 @@
          <td><%= user.title%></td>
          <td><%= user.startdate %></td>
          <td><%= user.enddate%></td>
-         <td><%= user.allday %></td>
+         <td>
+         <% if user.allday == true %>
+            ○
+         <% else user.allday == false %>
+         <% end %>
+         </td>
+
          <td><%= user.updated_at.to_s(:datetime_jp)%></td>
        
          <td>

@@ -9,13 +9,16 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params.require(:user).permit(:title, :startdate, :enddate, :allday, :memo, ))
+    #以下のsaveメソッドで保存がされません
     if @user.save
-      flash[:notice] = "スケジュールを新規登録しました"
+      flash[:notice] = "ユーザーを新規登録しました"
       redirect_to :users
     else
-      render "new"
+      #こちらの処理が実行されます。
+      render "new", status: :unprocessable_entity
     end
   end
+  
   
   def show
     @user = User.find(params[:id])
