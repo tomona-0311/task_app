@@ -1,6 +1,11 @@
 
 <h1> ruby on rails スケジュール管理アプリ</h1>
  <h3>スケジュール一覧</h3>
+ <p>
+    <%= link_to '新しい順', user(latest: "true") %>
+    <%= link_to '古い順', user(old: "true") %>
+    <%= link_to '評価の高い順', user(star_count: "true") %>
+      </p>
  
  <% if flash[:notice] %>
    <p class="notice"><%= flash[:notice] %></p>
@@ -24,7 +29,7 @@
    <tbody>
      <% @users.each do |user| %>
        <tr>
-         <td><%= user.id.sort_link(@q, :id, "id")%></td>
+       <td><%= user.id%></td> 
        
          <td><%= user.title%></td>
          <td><%= user.startdate %></td>
@@ -56,6 +61,7 @@
 
 <footer>
 <h2>現在の日時 : <%= Date.current.strftime("%Y年 %m月 %d日") %>
-　スケジュール合計 :　<%= (@cart.total_price).to_i %>
+　スケジュール合計 :　<%= User.count('title') %>
+
 </h2>
 </footer>

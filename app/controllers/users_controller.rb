@@ -1,7 +1,15 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
-    @q = Book.ransack(params[:q])
+   if params[:latest]
+        @users = User.latest
+      elsif params[:old]
+        @users  = User.old
+     elsif params[:star_count]
+      @users  = User.star_count
+      else
+       @users  = User.all
+      end
   end
 
   def new
@@ -46,4 +54,5 @@ class UsersController < ApplicationController
     flash[:notice] = "スケジュールを削除しました"
     redirect_to :users
   end
+  
 end
