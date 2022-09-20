@@ -1,11 +1,7 @@
 
 <h1> ruby on rails スケジュール管理アプリ</h1>
  <h3>スケジュール一覧</h3>
- <p>
-    <%= link_to '新しい順', user(latest: "true") %>
-    <%= link_to '古い順', user(old: "true") %>
-    <%= link_to '評価の高い順', user(star_count: "true") %>
-      </p>
+ 
  
  <% if flash[:notice] %>
    <p class="notice"><%= flash[:notice] %></p>

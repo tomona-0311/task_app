@@ -1,15 +1,6 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
-   if params[:latest]
-        @users = User.latest
-      elsif params[:old]
-        @users  = User.old
-     elsif params[:star_count]
-      @users  = User.star_count
-      else
-       @users  = User.all
-      end
   end
 
   def new
